@@ -198,8 +198,20 @@ const f = document.createElement("p"); f.className = "firma"; f.textContent = FI
 /* Reproducción opcional de música (se carga al interactuar con el usuario) */
 const fondoMusica = $("fondo-musica");
 const musica = $("musica"), btnMusica = $("btn-musica");
+const volumenControl = $("volume-control");
+const VOLUMEN_INICIAL = 35;
+
 fondoMusica.loop = true;
 musica.loop = false;
+
+function ajustarVolumen(valor) {
+  const valorNormalizado = Number(valor) / 100;
+  fondoMusica.volume = valorNormalizado * 0.4;
+  musica.volume = valorNormalizado;
+}
+
+volumenControl.addEventListener("input", (e) => ajustarVolumen(e.target.value));
+ajustarVolumen(VOLUMEN_INICIAL);
 
 async function iniciarFondo() {
   if (!fondoMusica.getAttribute("src")) {

@@ -27,7 +27,13 @@
 <!--  Se muestra solo si existe el archivo de música (ver MUSICA_ARCHIVO en el JS) -->
 <audio id="fondo-musica" loop preload="auto"></audio>
 <audio id="musica" preload="auto"></audio>
-<button type="button" id="btn-musica" hidden aria-pressed="false">♪ Tu Canción Favorita</button>
+<div class="music-controls" aria-label="Controles de música">
+  <button type="button" id="btn-musica" hidden aria-pressed="false">♪ Tu Canción Favorita</button>
+  <label class="volume-control" aria-label="Volumen de la música">
+    <span>Vol.</span>
+    <input id="volume-control" type="range" min="0" max="100" value="35" aria-label="Subir o bajar el volumen">
+  </label>
+</div>
 
 <main>
   <!-- ============ 1. PORTADA ============ -->
