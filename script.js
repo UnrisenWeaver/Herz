@@ -10,7 +10,8 @@ const FIRMA = "Te quiero";
 
 // Archivo de audio opcional para GitHub Pages.
 // Debe usarse una ruta relativa para que funcione en una web pública y no en file://
-const MUSICA_ARCHIVO = "./Musica/Yo%20queria,%20Cristian%20castro.MP3";
+const MUSICA_ARCHIVO = "./Musica/FondoSailor.MP3";
+const CANCIÓN_FAVORITA = "./Musica/Yo%20queria,%20Cristian%20castro.MP3";
 
 /* Configuración de las luces: cada objeto define una posición en el cielo y
    el contenido del mensaje asociado. Los valores x e y se expresan en porcentajes. */
@@ -195,32 +196,69 @@ CARTA.forEach(linea => {
 const f = document.createElement("p"); f.className = "firma"; f.textContent = FIRMA; $("carta-texto").appendChild(f);
 
 /* Reproducción opcional de música (se carga al interactuar con el usuario) */
+const fondoMusica = $("fondo-musica");
 const musica = $("musica"), btnMusica = $("btn-musica");
-if (MUSICA_ARCHIVO) btnMusica.hidden = false;
+fondoMusica.loop = true;
+musica.loop = false;
 
-btnMusica.addEventListener("click", async () => {
-  if (!musica.getAttribute("src")) {
-    musica.src = MUSICA_ARCHIVO;
-    musica.load();
+async function iniciarFondo() {
+  if (!fondoMusica.getAttribute("src")) {
+    fondoMusica.src = MUSICA_ARCHIVO;
+    fondoMusica.load();
   }
 
-  const sonando = !musica.paused;
-  if (sonando) {
+  try {
+    if (musica && !musica.paused) musica.pause();
+    await fondoMusica.play();
+  } catch {
+    // El navegador bloquea la reproducción automática hasta la interacción del usuario.
+  }
+}
+
+async function pausarFavorita() {
+  if (!musica.paused) {
     musica.pause();
     btnMusica.setAttribute("aria-pressed", "false");
-    btnMusica.textContent = "♪ Música";
+    btnMusica.textContent = "♪ Tu Canción Favorita";
+    await iniciarFondo();
+  }
+}
+
+if (MUSICA_ARCHIVO) btnMusica.hidden = false;
+
+document.addEventListener("pointerdown", iniciarFondo, { once: true });
+document.addEventListener("keydown", iniciarFondo, { once: true });
+
+musica.addEventListener("ended", async () => {
+  btnMusica.setAttribute("aria-pressed", "false");
+  btnMusica.textContent = "♪ Tu Canción Favorita";
+  await iniciarFondo();
+});
+
+btnMusica.addEventListener("click", async () => {
+  if (!musica.paused) {
+    await pausarFavorita();
     return;
   }
 
+  if (!musica.getAttribute("src") || musica.getAttribute("src") !== CANCIÓN_FAVORITA) {
+    musica.src = CANCIÓN_FAVORITA;
+    musica.load();
+  }
+
+  fondoMusica.pause();
   try {
     await musica.play();
     btnMusica.setAttribute("aria-pressed", "true");
     btnMusica.textContent = "♪ Pausar";
   } catch {
     btnMusica.setAttribute("aria-pressed", "false");
-    btnMusica.textContent = "♪ Música";
+    btnMusica.textContent = "♪ Tu Canción Favorita";
+    await iniciarFondo();
   }
 });
+
+iniciarFondo();
 
 /* Advertencia local para textos pendientes de personalización */
 if (["", "localhost", "127.0.0.1"].includes(location.hostname)) {
