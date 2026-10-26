@@ -104,35 +104,29 @@ const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const cursorRing = document.querySelector(".cursor-ring");
 const cursorDot = document.querySelector(".cursor-dot");
 
-function actualizarCursor(x, y) {
+function moverCursor(x, y) {
   if (!cursorRing || !cursorDot) return;
   cursorRing.style.left = `${x}px`;
   cursorRing.style.top = `${y}px`;
   cursorDot.style.left = `${x}px`;
   cursorDot.style.top = `${y}px`;
+  document.body.classList.remove("cursor-hidden");
 }
 
-document.addEventListener("pointermove", (event) => {
-  actualizarCursor(event.clientX, event.clientY);
-  document.body.classList.add("cursor-visible");
-});
-
-document.addEventListener("pointerleave", () => {
-  document.body.classList.remove("cursor-visible");
-});
+document.addEventListener("pointermove", (event) => moverCursor(event.clientX, event.clientY));
+document.addEventListener("pointerenter", () => document.body.classList.remove("cursor-hidden"));
+document.addEventListener("pointerleave", () => document.body.classList.add("cursor-hidden"));
 
 document.addEventListener("pointerdown", () => {
-  if (cursorRing) {
-    cursorRing.style.width = "32px";
-    cursorRing.style.height = "32px";
-  }
+  if (!cursorRing) return;
+  cursorRing.style.width = "34px";
+  cursorRing.style.height = "34px";
 });
 
 document.addEventListener("pointerup", () => {
-  if (cursorRing) {
-    cursorRing.style.width = "42px";
-    cursorRing.style.height = "42px";
-  }
+  if (!cursorRing) return;
+  cursorRing.style.width = "42px";
+  cursorRing.style.height = "42px";
 });
 
 $("titulo-nombre").textContent = "Para " + NOMBRE_ELLA;
