@@ -105,16 +105,39 @@ $("titulo-nombre").textContent = "Para " + NOMBRE_ELLA;
 /* Gestión de escenas y navegación */
 const ORDEN = ["portada", "respira", "luces", "sobres", ...(RECUERDOS.length ? ["recuerdos"] : []), "carta"];
 let temporizador;
+let escenaActual = "portada";
 
 function ir(id) {
   if (id === "siguiente-sobres") id = ORDEN[ORDEN.indexOf("sobres") + 1];
+  if (!ORDEN.includes(id)) return;
+
+  escenaActual = id;
   document.querySelectorAll(".escena").forEach(s => s.classList.toggle("activa", s.id === id));
+  document.querySelectorAll(".btn-volver").forEach(btn => {
+    const escena = btn.closest(".escena");
+    btn.hidden = !escena || escena.id !== id || id === "portada";
+  });
   window.scrollTo(0, 0);
   history.replaceState(null, "", "#" + id);
   clearInterval(temporizador);
   if (id === "respira") guiarRespiro();
 }
 document.querySelectorAll("[data-ir]").forEach(b => b.addEventListener("click", () => ir(b.dataset.ir)));
+
+const botonesVolver = document.querySelectorAll(".escena");
+for (const escena of botonesVolver) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "btn-volver";
+  btn.textContent = "← Volver";
+  btn.hidden = true;
+  btn.addEventListener("click", () => {
+    const indiceActual = ORDEN.indexOf(escenaActual);
+    const indiceAnterior = Math.max(0, indiceActual - 1);
+    ir(ORDEN[indiceAnterior]);
+  });
+  escena.appendChild(btn);
+}
 
 // Guía visual del proceso de respiración: 5 segundos inhalando y 5 segundos exhalando.
 function guiarRespiro() {
