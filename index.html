@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para Lizy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<canvas id="estrellas" aria-hidden="true"></canvas>
+
+<!--  Se muestra solo si existe el archivo de música (ver MUSICA_ARCHIVO en el JS) -->
+<audio id="musica" loop preload="none"></audio>
+<button type="button" id="btn-musica" hidden aria-pressed="false">♪ Música</button>
+
+<main>
+  <!-- ============ 1. PORTADA ============ -->
+  <section class="escena" id="portada">
+    <h1 id="titulo-nombre"></h1>
+    <p class="sub">Esto lo hice con calma, solo para ti.<br>No hay nada que contestar ni nada que demostrar.</p>
+    <button type="button" data-ir="respira">Entrar</button>
+  </section>
+
+  <!-- ============ 2. RESPIRO ============ -->
+  <section class="escena" id="respira">
+    <h2>Antes de nada, un respiro</h2>
+    <div class="aro" aria-hidden="true"></div>
+    <p id="guia-respiro" aria-live="polite">Inspira…</p>
+    <p class="sub">El tiempo que quieras. Aquí no corre prisa.</p>
+    <button type="button" data-ir="luces">Seguir</button>
+  </section>
+
+  <!-- ============ 3. LUCES ============ -->
+  <section class="escena" id="luces">
+    <h2>Pequeñas luces</h2>
+    <p class="sub">Toca las que quieras, en el orden que quieras. Ninguna caduca.</p>
+    <div class="cielo" id="cielo"></div>
+    <p id="contador"></p>
+    <button type="button" data-ir="sobres">Seguir</button>
+  </section>
+
+  <!-- ============ 4. SOBRES ============ -->
+  <section class="escena" id="sobres">
+    <h2>Para cuando haga falta</h2>
+    <p class="sub">Cartas para días concretos. Ábrelas solo cuando te sirvan.</p>
+    <div class="sobres" id="sobres-lista"></div>
+    <button type="button" data-ir="siguiente-sobres">Seguir</button>
+  </section>
+
+  <!-- ============ 5. RECUERDOS (solo aparece si rellenas RECUERDOS en el JS) ============ -->
+  <section class="escena" id="recuerdos">
+    <h2>Lo que hemos vivido</h2>
+    <ol class="recuerdos" id="recuerdos-lista"></ol>
+    <button type="button" data-ir="carta">Seguir</button>
+  </section>
+
+  <!-- ============ 6. CARTA FINAL ============ -->
+  <section class="escena" id="carta">
+    <div class="carta" id="carta-texto"></div>
+    <button type="button" data-ir="luces">Volver al cielo</button>
+  </section>
+</main>
+
+<!-- Ventana donde se leen las luces y los sobres -->
+<dialog id="ventana" aria-labelledby="v-titulo">
+  <h3 id="v-titulo"></h3>
+  <p id="v-texto"></p>
+  <audio id="v-audio" controls preload="none" hidden></audio>
+  <button type="button" id="v-cerrar">Cerrar</button>
+</dialog>
+
+<script src="script.js" defer></script>
+</body>
+</html>
