@@ -25,55 +25,38 @@ body {
   cursor: none;
 }
 
-body::after {
-  content: "";
+.cursor-ring,
+.cursor-dot {
   position: fixed;
   left: 0;
   top: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fff8d6 18%, #ffd7ea 35%, #d7b3ff 58%, rgba(215,179,255,0.35) 70%, transparent 100%);
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.8), 0 0 30px rgba(215, 179, 255, 0.6);
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.18s ease, height 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  transition: width 0.18s ease, height 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-body:hover::after {
-  width: 34px;
-  height: 34px;
+.cursor-ring {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 0 24px rgba(160, 210, 255, 0.75), 0 0 34px rgba(255, 179, 220, 0.55);
+}
+
+.cursor-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #ffe2f1 22%, #ff7eb6 46%, #b39dff 72%, rgba(179,157,255,0.15) 100%);
+  box-shadow: 0 0 14px rgba(255, 126, 182, 0.95), 0 0 24px rgba(179, 157, 255, 0.8);
 }
 
 button, a, .luz, .sobre, .carta, .music-controls, .volume-control, .escena {
   cursor: none;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 46px;
-  height: 46px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 22px rgba(150, 200, 255, 0.4);
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: width 0.18s ease, height 0.18s ease, border-color 0.18s ease;
-}
-
-body:hover::before {
-  width: 52px;
-  height: 52px;
-  border-color: rgba(255, 219, 237, 0.9);
-}
-/* Fondo con degradado fijo para toda la experiencia */
 body::before {
   content: ""; position: fixed; inset: 0; z-index: -2;
   background:
