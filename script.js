@@ -59,22 +59,22 @@ const SOBRES = [
   {
     abrir: "no puedas dormir",
     audio: "",
-    texto: "A veces la cabeza no deja de dar vueltas y llega la noche y parece que no hay forma de quietarse.\nSi hoy no puedes descansar, no hace falta que te obligues a resolverlo todo a esta hora.\nPuedes dejarte estar, respirar un poco más lento y recordar que un mal momento no hace menos valiosa a la persona que eres."
+    texto: "Cierra los ojitos, mi amor. Sé que a veces la noche se pone pesada y los pensamientos empiezan a dar vueltas sin freno cuando el silencio es demasiado grande. Piensa que, aunque el Atlántico nos separe y ahora mismo estemos a miles de kilómetros, bajo este mismo cielo hay un pedacito de mí que te acompaña en vela. Imagina que te abrazo fuerte, que te quito el insomnio a base de mimos y que el mundo de allá afuera puede esperar hasta mañana. Respira hondo, pon una canción suave de Chase Atlantic en tu mente y déjate caer, que yo cuido tus sueños desde aquí hasta que amanezca para los dos."
   },
   {
     abrir: "dudes de ti",
     audio: "",
-    texto: "Cuando dudes de ti, intenta recordarte lo que yo veo: tu mirada, tu forma de ser, tu sensibilidad y la manera en que te importan las personas que te importan.\nNo siempre necesitas ser la versión más fuerte de ti para seguir mereciendo cariño y respeto.\nEres más de lo que te permites reconocer en los días pesados."
+    texto: "Escúchame bien y, si es necesario, vuelve a leer esto las veces que haga falta: eres increíblemente capaz, fuerte y brillante. A veces el espejo o el ruido de fuera intentan hacerte dudar de tu luz, pero yo te conozco bien y sé de lo que estás hecha. Has superado tanto, te has reinventado, le pones tanta pasión a tus proyectos y a lo que eres, que ninguna duda momentánea tiene derecho a hacerte sombra. Tienes una intuición que ya quisieran las cartas del tarot más sabias, y confío en ti con los ojos cerrados. Cree en ti tanto como yo lo hago, porque vas a comerte el mundo."
   },
   {
     abrir: "necesites reír",
     audio: "",
-    texto: "Si hoy necesitas reír, te doy permiso para hacer eso sin culpa ni vergüenza.\nTal vez te haga falta una broma, una tontería o simplemente un pequeño momento de absurdo para que el pecho se te relaje.\nY si hace falta, aquí va mi gran contribución: Las veces que os habéis quedado dormidos a mitad de una conversación o de una llamada, dejándolo todo a medias pero con la certeza de que el otro seguía ahí."
+    texto: "A ver, prohibido seguir con esa cara de amargada o seria un segundo más. ¿Te acuerdas de cuando nos reímos de nuestras propias tonterías o de las ocurrencias más absurdas? Ven acá, saca esa sonrisa que lo ilumina todo (sí, esa misma que sabes que me encanta). Si el día se pone tonto, le devolvemos la jugada con humor. Imagíname haciendo cualquier estupidez solo para arrancarte una carcajada. La vida ya es muy complicada como para tomársela en serio todo el tiempo. ¡Ríete, que te queda hermoso y se te quitan todos los males!"
   },
   {
     abrir: "te sientas sola",
     audio: "",
-    texto: "Aunque a veces el mundo te haga sentir pequeña o lejana, no estás tan sola como crees.\nHay cercanía en muchos sitios, y también la hay en las personas que te quieren sin exigirte nada.\nNo tienes que cargar todo tú sola para ser digna de compañía, calma y cariño."
+    texto: "A veces el mundo entero se silencia de golpe y parece que el ruido de dentro se vuelve demasiado grande, haciéndote sentir que estás flotando sola en medio de nada. Pero quiero que recuerdes algo que ni el tiempo ni el espacio pueden cambiar: tú y yo somos un refugio el uno para el otro. No importa dónde estemos ni lo silencioso que sea el cuarto; mi alma sabe exactamente dónde encontrarte. Cada latido tuyo resuena conmigo, y cada pensamiento mío te busca. Cuando sientas que la soledad aprieta, cierra los ojos un instante y recuerda que te pertenezco tanto como tú a mí, y que jamás, ni por un solo segundo, vas a caminar sola por la vida porque yo voy contigo, cogido de tu mano, en lo hondo de ti."
   }
 ];
 
