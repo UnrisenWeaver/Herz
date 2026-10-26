@@ -37,7 +37,36 @@ body::before {
 h1, h2 { font-weight: 400; font-style: italic; line-height: 1.1; }
 h1 { font-size: clamp(3.4rem, 15vw, 7rem); }
 h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
+.portada-contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 2.25rem);
+  width: min(100%, 64rem);
+}
+.portada-texto { max-width: 44rem; }
 .sub { color: var(--suave); max-width: 28rem; margin: 1rem auto 0; }
+
+.corazon-portada {
+  font-size: clamp(4.5rem, 8vw, 10rem);
+  line-height: 1;
+  color: #ff2d55;
+  text-shadow: 0 0 22px rgba(255, 45, 85, 0.5), 0 10px 30px rgba(255, 45, 85, 0.28);
+  animation: latido-corazon 2.3s ease-in-out infinite;
+  user-select: none;
+}
+.corazon-izq {
+  transform: rotate(-10deg);
+}
+.corazon-der {
+  transform: rotate(10deg);
+}
+@keyframes latido-corazon {
+  0%, 100% { transform: scale(1) rotate(var(--rotacion, 0deg)); opacity: 0.9; }
+  50% { transform: scale(1.16) rotate(var(--rotacion, 0deg)); opacity: 1; }
+}
+.corazon-izq { --rotacion: -10deg; }
+.corazon-der { --rotacion: 10deg; }
 
 button {
   font: 500 1.1rem var(--serif); color: var(--texto); cursor: pointer;
