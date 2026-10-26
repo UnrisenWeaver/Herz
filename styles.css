@@ -47,17 +47,6 @@ button {
 }
 button:hover { background: rgba(243,214,160,.16); border-color: var(--oro); }
 
-.btn-volver {
-  margin-top: 1rem;
-  background: rgba(255,255,255,.04);
-  border-color: rgba(243,214,160,.3);
-  color: var(--suave);
-}
-.btn-volver:hover {
-  background: rgba(243,214,160,.08);
-  border-color: rgba(243,214,160,.5);
-}
-
 /* ============ SECCIÓN DE RESPIRACIÓN ============ */
 .aro { width: 11rem; height: 11rem; border-radius: 50%; margin: 2.5rem 0 1.5rem;
        background: radial-gradient(circle, rgba(156,199,255,.55), rgba(156,199,255,.05) 70%);
