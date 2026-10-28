@@ -117,10 +117,12 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
 .sub { color: var(--suave); max-width: 28rem; margin: 1rem auto 0; }
 
 .contador-visitas-personalizado {
-  position: fixed; top: 1rem; left: 1rem; z-index: 40; padding: .35rem .7rem;
-  border-radius: 999px; background: rgba(10, 14, 32, 0.35); border: 1px solid rgba(243,214,160,.2);
-  color: rgba(243,214,160,.9); font: 500 .78rem/1.2 var(--serif); letter-spacing: .08em;
-  text-transform: uppercase; backdrop-filter: blur(6px); box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  position: fixed; top: 1rem; left: 1rem; z-index: 40; max-width: min(18rem, calc(100vw - 1.5rem));
+  padding: .5rem .8rem; border-radius: .9rem; background: rgba(10, 14, 32, 0.72);
+  border: 1px solid rgba(243,214,160,.32); color: #f8e7bb; font: 600 .78rem/1.35 var(--serif);
+  letter-spacing: .04em; text-transform: none; backdrop-filter: blur(7px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.18), 0 0 16px rgba(243,214,160,.18);
+  text-shadow: 0 0 12px rgba(243,214,160,.18);
 }
 
 .corazon-portada {
