@@ -44,7 +44,6 @@
       <span class="corazon-portada corazon-izq" aria-hidden="true">♥</span>
       <div class="portada-texto">
         <h1 id="titulo-nombre"></h1>
-        <p class="contador-visitas" id="contador-visitas" aria-live="polite"></p>
         <p class="sub">"Un lugar donde el mundo se detiene.
 <br>Sin expectativas, sin ruido, sin respuestas que dar. Solo tú y yo en estas palabras."</p>
       </div>
@@ -100,6 +99,9 @@
   <audio id="v-audio" controls preload="none" hidden></audio>
   <button type="button" id="v-cerrar">Cerrar</button>
 </dialog>
+
+<button type="button" id="contador-secreto" class="contador-secreto" aria-label="Contador secreto" title="Contador secreto"></button>
+<div id="contador-secreto-panel" class="contador-secreto-panel" hidden aria-live="polite"></div>
 
 <script src="contador-visitas.js"></script>
 <script src="script.js" defer></script>

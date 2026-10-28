@@ -114,11 +114,23 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
   width: min(100%, 64rem);
 }
 .portada-texto { max-width: 44rem; }
-.contador-visitas {
-  margin-top: .8rem; color: rgba(243,214,160,.9); font-size: clamp(1rem, 1.7vw, 1.3rem);
-  letter-spacing: .08em; text-transform: uppercase; font-style: italic;
-}
 .sub { color: var(--suave); max-width: 28rem; margin: 1rem auto 0; }
+
+.contador-secreto {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 50; width: 14px; height: 14px;
+  margin: 0; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,0.04);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04); opacity: 0.08; cursor: pointer;
+}
+.contador-secreto:hover,
+.contador-secreto:focus-visible {
+  opacity: 0.5; background: rgba(243,214,160,0.18); box-shadow: 0 0 0 1px rgba(243,214,160,.2), 0 0 18px rgba(243,214,160,.25);
+}
+.contador-secreto-panel {
+  position: fixed; right: 2rem; bottom: 2.5rem; z-index: 49; max-width: 16rem;
+  padding: .75rem .9rem; border-radius: .8rem; background: rgba(8,12,28,.84);
+  border: 1px solid rgba(243,214,160,.22); color: var(--texto); font-size: .95rem;
+  box-shadow: 0 18px 40px rgba(0,0,0,.3); backdrop-filter: blur(6px);
+}
 
 .corazon-portada {
   font-size: clamp(4.5rem, 8vw, 10rem);
