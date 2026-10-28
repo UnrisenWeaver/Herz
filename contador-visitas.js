@@ -11,6 +11,18 @@
     }
   }
 
+  function resetearContador(storage = global.localStorage) {
+    try {
+      if (storage) {
+        storage.setItem(CLAVE_CONTADOR, '0');
+      }
+    } catch {
+      // Si el navegador bloquea el almacenamiento, no se puede reiniciar.
+    }
+
+    return 0;
+  }
+
   function registrarVisita(storage = global.localStorage) {
     const total = obtenerNumeroDeVisitas(storage) + 1;
 
@@ -25,7 +37,7 @@
     return total;
   }
 
-  const api = { obtenerNumeroDeVisitas, registrarVisita };
+  const api = { obtenerNumeroDeVisitas, registrarVisita, resetearContador };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
