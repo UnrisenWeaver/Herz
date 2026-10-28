@@ -133,22 +133,12 @@ $("titulo-nombre").textContent = "Para " + NOMBRE_ELLA;
 
 const contadorApi = window.HERZ_CONTADOR || {};
 const totalVisitas = typeof contadorApi.registrarVisita === "function" ? contadorApi.registrarVisita() : 1;
-const botonContadorSecreto = $("contador-secreto");
-const panelContadorSecreto = $("contador-secreto-panel");
+const contadorPersonalizado = $("contador-visitas-personalizado");
 
-if (botonContadorSecreto) {
-  botonContadorSecreto.addEventListener("click", () => {
-    const mensaje = totalVisitas === 1
-      ? "Es la primera vez que me visitas."
-      : `He tenido ${totalVisitas} visitas en este rincón.`;
-
-    if (panelContadorSecreto) {
-      panelContadorSecreto.textContent = mensaje;
-      panelContadorSecreto.hidden = false;
-    } else {
-      window.alert(mensaje);
-    }
-  });
+if (contadorPersonalizado) {
+  contadorPersonalizado.textContent = totalVisitas === 1
+    ? "Cantidad de veces que nuestros ojos se cruzaron: 1"
+    : `Cantidad de veces que nuestros ojos se cruzaron: ${totalVisitas}`;
 }
 
 /* Gestión de escenas y navegación */
