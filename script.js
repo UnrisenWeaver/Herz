@@ -131,6 +131,15 @@ document.addEventListener("pointerup", () => {
 
 $("titulo-nombre").textContent = "Para " + NOMBRE_ELLA;
 
+const contadorApi = window.HERZ_CONTADOR || {};
+const totalVisitas = typeof contadorApi.registrarVisita === "function" ? contadorApi.registrarVisita() : 1;
+const contadorVisitas = $("contador-visitas");
+if (contadorVisitas) {
+  contadorVisitas.textContent = totalVisitas === 1
+    ? "Es la primera vez que me visitas"
+    : `Has vuelto a mi rincón ${totalVisitas} veces`;
+}
+
 /* Gestión de escenas y navegación */
 const ORDEN = ["portada", "respira", "luces", "sobres", ...(RECUERDOS.length ? ["recuerdos"] : []), "carta"];
 let temporizador;

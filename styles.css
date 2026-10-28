@@ -114,6 +114,10 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
   width: min(100%, 64rem);
 }
 .portada-texto { max-width: 44rem; }
+.contador-visitas {
+  margin-top: .8rem; color: rgba(243,214,160,.9); font-size: clamp(1rem, 1.7vw, 1.3rem);
+  letter-spacing: .08em; text-transform: uppercase; font-style: italic;
+}
 .sub { color: var(--suave); max-width: 28rem; margin: 1rem auto 0; }
 
 .corazon-portada {
