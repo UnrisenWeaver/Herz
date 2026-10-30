@@ -131,19 +131,24 @@ document.addEventListener("pointerup", () => {
 
 $("titulo-nombre").textContent = "Para " + NOMBRE_ELLA;
 
-const contadorApi = window.HERZ_CONTADOR || {};
-const totalVisitas = typeof contadorApi.registrarVisita === "function" ? contadorApi.registrarVisita() : 1;
-const contadorPersonalizado = $("contador-visitas-personalizado");
-
-if (contadorPersonalizado) {
-  contadorPersonalizado.textContent = totalVisitas === 1
-    ? "Cantidad de veces que nuestros ojos se cruzaron: 1"
-    : `Cantidad de veces que nuestros ojos se cruzaron: ${totalVisitas}`;
-}
-
 /* Gestión de escenas y navegación */
 const ORDEN = ["portada", "respira", "luces", "sobres", ...(RECUERDOS.length ? ["recuerdos"] : []), "carta"];
+const MENSAJE_ROMANTICO = [
+  "Vales la pena.",
+  "Vales la Espera.",
+  "Vales a Distancia.",
+  "Vales El tiempo.",
+  "Vales mi amor eterno.",
+  "Te amo"
+].join("\n");
 let temporizador;
+
+const btnMensajeRomantico = $("btn-mensaje-romantico");
+if (btnMensajeRomantico) {
+  btnMensajeRomantico.addEventListener("click", () => {
+    mostrarTextoAnimado("Para ti", MENSAJE_ROMANTICO.split("\n"));
+  });
+}
 
 function ir(id) {
   if (id === "siguiente-sobres") id = ORDEN[ORDEN.indexOf("sobres") + 1];
@@ -179,7 +184,63 @@ function guiarRespiro() {
 
 /* Modal de contenido ampliado */
 const ventana = $("ventana");
+let timeoutAnimacionMensaje = null;
+
+function limpiarAnimacionTexto() {
+  if (timeoutAnimacionMensaje) {
+    clearTimeout(timeoutAnimacionMensaje);
+    timeoutAnimacionMensaje = null;
+  }
+  const textoEl = $("v-texto");
+  if (textoEl) {
+    textoEl.classList.remove("visible");
+    textoEl.style.opacity = "";
+  }
+}
+
+function cerrarVentana() {
+  limpiarAnimacionTexto();
+  $("v-audio").pause();
+  ventana.close();
+}
+
+function mostrarTextoAnimado(titulo, frases) {
+  $("v-titulo").textContent = titulo;
+  const textoEl = $("v-texto");
+  textoEl.textContent = "";
+  textoEl.classList.remove("visible");
+  const a = $("v-audio");
+  a.pause(); a.hidden = true; a.removeAttribute("src");
+  ventana.showModal();
+
+  let indice = 0;
+  function mostrarSiguiente() {
+    if (indice >= frases.length) {
+      textoEl.textContent = frases[frases.length - 1];
+      textoEl.classList.add("visible");
+      return;
+    }
+
+    const frase = frases[indice];
+    textoEl.textContent = frase;
+    textoEl.classList.remove("visible");
+    void textoEl.offsetWidth;
+    textoEl.classList.add("visible");
+
+    timeoutAnimacionMensaje = setTimeout(() => {
+      textoEl.classList.remove("visible");
+      timeoutAnimacionMensaje = setTimeout(() => {
+        indice += 1;
+        mostrarSiguiente();
+      }, 500);
+    }, 1400);
+  }
+
+  mostrarSiguiente();
+}
+
 function abrir({ titulo, texto, audio }) {
+  limpiarAnimacionTexto();
   $("v-titulo").textContent = titulo;
   $("v-texto").textContent = texto;
   const a = $("v-audio");
@@ -187,8 +248,8 @@ function abrir({ titulo, texto, audio }) {
   if (audio) a.src = audio;
   ventana.showModal();
 }
-$("v-cerrar").addEventListener("click", () => { $("v-audio").pause(); ventana.close(); });
-ventana.addEventListener("click", (e) => { if (e.target === ventana) { $("v-audio").pause(); ventana.close(); } });  // Cierra el modal al hacer clic fuera del diálogo.
+$("v-cerrar").addEventListener("click", cerrarVentana);
+ventana.addEventListener("click", (e) => { if (e.target === ventana) cerrarVentana(); });  // Cierra el modal al hacer clic fuera del diálogo.
 
 /* Generación de luces interactivas */
 let leidas = 0;

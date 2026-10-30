@@ -116,13 +116,17 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
 .portada-texto { max-width: 44rem; }
 .sub { color: var(--suave); max-width: 28rem; margin: 1rem auto 0; }
 
-.contador-visitas-personalizado {
-  position: fixed; top: 1rem; left: 1rem; z-index: 40; max-width: min(18rem, calc(100vw - 1.5rem));
-  padding: .5rem .8rem; border-radius: .9rem; background: rgba(10, 14, 32, 0.72);
-  border: 1px solid rgba(243,214,160,.32); color: #f8e7bb; font: 600 .78rem/1.35 var(--serif);
-  letter-spacing: .04em; text-transform: none; backdrop-filter: blur(7px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.18), 0 0 16px rgba(243,214,160,.18);
-  text-shadow: 0 0 12px rgba(243,214,160,.18);
+.btn-romantico {
+  margin-top: 1rem;
+  background: linear-gradient(135deg, rgba(255, 174, 214, 0.15), rgba(160, 198, 255, 0.12));
+  border-color: rgba(255, 210, 235, 0.75);
+  box-shadow: 0 0 20px rgba(255, 160, 210, 0.18), 0 0 30px rgba(160, 198, 255, 0.12);
+  color: #fff7fb;
+}
+
+.btn-romantico:hover {
+  background: linear-gradient(135deg, rgba(255, 174, 214, 0.22), rgba(160, 198, 255, 0.18));
+  border-color: rgba(243, 214, 160, 0.9);
 }
 
 .corazon-portada {
@@ -198,7 +202,8 @@ dialog { width: min(92vw, 30rem); margin: auto; padding: 2rem 1.6rem 1.6rem; col
 dialog::backdrop { background: rgba(5,8,28,.6); backdrop-filter: blur(5px); }
 dialog[open] { animation: entrar .6s ease both; }
 dialog h3 { font: italic 400 1.8rem/1.15 var(--serif); color: var(--oro); margin-bottom: .8rem; }
-dialog p { white-space: pre-wrap; }
+dialog p { white-space: pre-wrap; opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
+dialog p.visible { opacity: 1; transform: translateY(0); }
 dialog audio { width: 100%; margin-top: 1rem; }
 dialog button { margin-top: 1.2rem; }
 
