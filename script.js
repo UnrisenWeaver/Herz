@@ -186,7 +186,6 @@ if (btnMensajeRomantico) {
 }
 
 function ir(id) {
-  if (id === "siguiente-sobres") id = ORDEN[ORDEN.indexOf("sobres") + 1];
   if (!ORDEN.includes(id)) return;
 
   document.querySelectorAll(".escena").forEach(s => s.classList.toggle("activa", s.id === id));
@@ -221,8 +220,8 @@ for (let i = 1; i < ORDEN.length; i++) {
 
   const btnVolver = document.createElement("button");
   btnVolver.type = "button";
-  btnVolver.textContent = "Volver";
-  btnVolver.addEventListener("click", () => ir(ORDEN[i - 1]));
+  btnVolver.textContent = "Volver a la portada";
+  btnVolver.addEventListener("click", () => ir("portada"));
   escena.appendChild(btnVolver);
 }
 
