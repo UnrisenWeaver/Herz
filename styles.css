@@ -124,7 +124,7 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
 .portada-eleccion { margin-top: 1.5rem; color: var(--oro); font-style: italic; }
 .portada-opciones {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .8rem;
   width: min(100%, 38rem);
   margin-top: .9rem;
@@ -144,6 +144,7 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
 }
 .portada-opcion span { color: var(--oro); font-size: 1.5rem; line-height: 1; }
 .portada-opcion:hover { transform: translateY(-2px); }
+.portada-opcion-carta { grid-column: 1 / -1; justify-self: center; width: min(100%, 12rem); }
 
 .btn-romantico {
   margin-top: 1rem;
@@ -313,4 +314,5 @@ dialog button { margin-top: 1.2rem; }
   .portada-opciones { grid-template-columns: 1fr; width: min(100%, 22rem); }
   .portada-opcion { min-height: 3.5rem; flex-direction: row; justify-content: flex-start; padding-inline: 1rem; }
   .portada-opcion span { width: 1.5rem; }
+  .portada-opcion-carta { grid-column: auto; width: 100%; }
 }
