@@ -50,29 +50,26 @@
       </div>
       <span class="corazon-portada corazon-der" aria-hidden="true">♥</span>
     </div>
-    <button type="button" data-ir="respira">Entrar</button>
+    <p class="portada-eleccion">¿Qué te vendría bien ahora?</p>
+    <div class="portada-opciones" role="group" aria-label="Elige qué te apetece">
+      <button type="button" class="portada-opcion" data-ir="luces"><span aria-hidden="true">✦</span>Una lucecita</button>
+      <button type="button" class="portada-opcion" data-ir="sobres"><span aria-hidden="true">✉</span>Un mensaje para este momento</button>
+      <button type="button" class="portada-opcion" data-ir="razones"><span aria-hidden="true">♡</span>Algo bonito sobre ti</button>
+    </div>
     <button type="button" class="btn-romantico" id="btn-mensaje-romantico">Cuando quieras recordar lo que vales, Herz</button>
   </section>
 
-  <!-- ============ 2. RESPIRO ============ -->
-  <section class="escena" id="respira">
-    <h2>Antes de nada, un respiro</h2>
-    <div class="aro" aria-hidden="true"></div>
-    <p id="guia-respiro" aria-live="polite">Inspira…</p>
-    <p class="sub">El tiempo que quieras. Aquí no corre prisa, Herz.</p>
-    <button type="button" data-ir="luces">Seguir</button>
-  </section>
-
-  <!-- ============ 3. LUCES ============ -->
+  <!-- ============ 2. LUCES ============ -->
   <section class="escena" id="luces">
     <h2>Pequeñas luces para Herz</h2>
     <p class="sub">Toca las que quieras, en el orden que quieras. Ninguna caduca.</p>
-    <div class="cielo" id="cielo"></div>
-    <p id="contador"></p>
+    <div class="cielo" id="cielo">
+      <canvas class="constelacion" id="constelacion" aria-hidden="true"></canvas>
+    </div>
     <button type="button" data-ir="razones">Seguir</button>
   </section>
 
-  <!-- ============ 4. RAZONES ============ -->
+  <!-- ============ 3. RAZONES ============ -->
   <section class="escena" id="razones">
     <h2>Herz, algunas cosas que me encantan de ti</h2>
     <p class="sub">No tienes que leerlas todas de una vez.<br>Solo quería dejarte aquí algunas de las cosas que me gustan de ti.</p>
@@ -85,7 +82,7 @@
     <button type="button" data-ir="sobres">Seguir</button>
   </section>
 
-  <!-- ============ 5. SOBRES ============ -->
+  <!-- ============ 4. SOBRES ============ -->
   <section class="escena" id="sobres">
     <h2>Para Herz, cuando haga falta</h2>
     <p class="sub">Cartas para días concretos. Ábrelas solo cuando te sirvan.</p>

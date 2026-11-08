@@ -77,6 +77,16 @@ const SOBRES = [
     abrir: "te sientas sola",
     audio: "",
     texto: "A veces el mundo entero se silencia de golpe y parece que el ruido de dentro se vuelve demasiado grande, haciéndote sentir que estás flotando sola en medio de nada. Pero quiero que recuerdes algo que ni el tiempo ni el espacio pueden cambiar: tú y yo somos un refugio el uno para el otro. No importa dónde estemos ni lo silencioso que sea el cuarto; mi alma sabe exactamente dónde encontrarte. Cada latido tuyo resuena conmigo, y cada pensamiento mío te busca. Cuando sientas que la soledad aprieta, cierra los ojos un instante y recuerda que te pertenezco tanto como tú a mí, y que jamás, ni por un solo segundo, vas a caminar sola por la vida porque yo voy contigo, cogido de tu mano, en lo hondo de ti."
+  },
+  {
+    abrir: "necesites un abrazo",
+    audio: "",
+    texto: "Herz, aquí va un abrazo de esos que no necesitan arreglar nada: solo estar un ratito contigo. Aunque hoy nos separen kilómetros, cierra los ojos e imagina que estoy ahí, rodeándote con mis brazos. No tienes que responder ni sentirte mejor enseguida. Guarda este abrazo para cuando te haga falta, y recuerda que también puedes pedirme uno de verdad, aunque por ahora tenga que mandártelo desde lejos."
+  },
+  {
+    abrir: "quieras celebrar algo",
+    audio: "",
+    texto: "Herz, si abriste esto porque algo te salió bien, ¡quiero celebrarlo contigo! No importa si para los demás parece pequeño: si te hizo ilusión, merece su momento. Cuéntame qué pasó y déjame alegrarme contigo. Y si hoy no tienes con quién compartirlo, quiero que sepas que me habría encantado estar ahí para escucharte, celebrar contigo y recordarte lo mucho que valen tus esfuerzos."
   }
 ];
 
@@ -154,7 +164,7 @@ document.addEventListener("pointerup", () => {
 $("titulo-nombre").textContent = "Para " + NOMBRE_ELLA;
 
 /* Gestión de escenas y navegación */
-const ORDEN = ["portada", "respira", "luces", "razones", "sobres", ...(RECUERDOS.length ? ["recuerdos"] : []), "carta"];
+const ORDEN = ["portada", "luces", "razones", "sobres", ...(RECUERDOS.length ? ["recuerdos"] : []), "carta"];
 const MENSAJE_ROMANTICO = [
   "Vales la pena.",
   "Vales la espera.",
@@ -163,7 +173,6 @@ const MENSAJE_ROMANTICO = [
   "Vales mi amor eterno.",
   `Te amo, ${APODO_ELLA}.`
 ].join("\n");
-let temporizador;
 
 const btnMensajeRomantico = $("btn-mensaje-romantico");
 if (btnMensajeRomantico) {
@@ -181,10 +190,9 @@ function ir(id) {
   if (!ORDEN.includes(id)) return;
 
   document.querySelectorAll(".escena").forEach(s => s.classList.toggle("activa", s.id === id));
+  if (id === "luces") dibujarConstelacion();
   window.scrollTo(0, 0);
   history.replaceState(null, "", "#" + id);
-  clearInterval(temporizador);
-  if (id === "respira") guiarRespiro();
 }
 document.querySelectorAll("[data-ir]").forEach(b => b.addEventListener("click", () => ir(b.dataset.ir)));
 
@@ -216,15 +224,6 @@ for (let i = 1; i < ORDEN.length; i++) {
   btnVolver.textContent = "Volver";
   btnVolver.addEventListener("click", () => ir(ORDEN[i - 1]));
   escena.appendChild(btnVolver);
-}
-
-// Guía visual del proceso de respiración: 5 segundos inhalando y 5 segundos exhalando.
-function guiarRespiro() {
-  const guia = $("guia-respiro");
-  const aro = document.querySelector(".aro");
-  aro.style.animation = "none"; void aro.offsetWidth; aro.style.animation = "";   // Reinicia la animación para mantener la sincronización visual.
-  let dentro = true; guia.textContent = "Inspira…";
-  temporizador = setInterval(() => { dentro = !dentro; guia.textContent = dentro ? "Inspira…" : "Suelta…"; }, 5000);
 }
 
 /* Modal de contenido ampliado */
@@ -298,20 +297,78 @@ function abrir({ titulo, texto, audio }) {
 $("v-cerrar").addEventListener("click", cerrarVentana);
 ventana.addEventListener("click", (e) => { if (e.target === ventana) cerrarVentana(); });  // Cierra el modal al hacer clic fuera del diálogo.
 
-/* Generación de luces interactivas */
-let leidas = 0;
-function actualizarContador() {
-  $("contador").textContent = leidas === 0 ? "" : `${leidas} de ${LUCES.length} luces encontradas`;
+/* Constelación formada por las luces que ella elige */
+const constelacion = $("constelacion");
+const contextoConstelacion = constelacion.getContext("2d");
+const lucesElegidas = [];
+let mensajeLuzPendiente = false;
+
+function dibujarConstelacion() {
+  const cielo = $("cielo");
+  const ancho = cielo.clientWidth;
+  const alto = cielo.clientHeight;
+  const escala = window.devicePixelRatio || 1;
+  if (!ancho || !alto) return;
+
+  constelacion.width = Math.round(ancho * escala);
+  constelacion.height = Math.round(alto * escala);
+  contextoConstelacion.setTransform(escala, 0, 0, escala, 0, 0);
+  contextoConstelacion.clearRect(0, 0, ancho, alto);
+
+  const puntos = lucesElegidas.map(indice => ({
+    x: LUCES[indice].x / 100 * ancho,
+    y: LUCES[indice].y / 100 * alto
+  }));
+
+  if (puntos.length > 1) {
+    contextoConstelacion.beginPath();
+    contextoConstelacion.moveTo(puntos[0].x, puntos[0].y);
+    puntos.slice(1).forEach(punto => contextoConstelacion.lineTo(punto.x, punto.y));
+    contextoConstelacion.strokeStyle = "rgba(243, 214, 160, .5)";
+    contextoConstelacion.lineWidth = 1.5;
+    contextoConstelacion.shadowColor = "rgba(243, 214, 160, .65)";
+    contextoConstelacion.shadowBlur = 8;
+    contextoConstelacion.stroke();
+  }
+
+  contextoConstelacion.shadowBlur = 0;
+  puntos.forEach(punto => {
+    contextoConstelacion.beginPath();
+    contextoConstelacion.arc(punto.x, punto.y, 2, 0, Math.PI * 2);
+    contextoConstelacion.fillStyle = "#fff4d8";
+    contextoConstelacion.fill();
+  });
 }
+
 LUCES.forEach((l, i) => {
   const b = document.createElement("button");
   b.type = "button"; b.className = "luz";
   b.style.left = l.x + "%"; b.style.top = l.y + "%";
   b.style.animationDelay = (i * 0.6) + "s";
   b.setAttribute("aria-label", "Luz " + (i + 1));
+  b.setAttribute("aria-pressed", "false");
   b.addEventListener("click", () => {
-    if (!b.classList.contains("leida")) { b.classList.add("leida"); leidas++; actualizarContador(); }
-    abrir({ titulo: `${APODO_ELLA}, ${l.titulo.toLocaleLowerCase("es")}`, texto: l.texto });
+    if (mensajeLuzPendiente) return;
+    if (!b.classList.contains("leida")) {
+      b.classList.add("leida");
+      b.setAttribute("aria-pressed", "true");
+      lucesElegidas.push(i);
+      dibujarConstelacion();
+    }
+
+    if (quieto) {
+      abrir({ titulo: `${APODO_ELLA}, ${l.titulo.toLocaleLowerCase("es")}`, texto: l.texto });
+      return;
+    }
+
+    mensajeLuzPendiente = true;
+    b.classList.remove("destello");
+    void b.offsetWidth;
+    b.classList.add("destello");
+    setTimeout(() => {
+      mensajeLuzPendiente = false;
+      abrir({ titulo: `${APODO_ELLA}, ${l.titulo.toLocaleLowerCase("es")}`, texto: l.texto });
+    }, 360);
   });
   $("cielo").appendChild(b);
 });
@@ -322,7 +379,15 @@ SOBRES.forEach(s => {
   b.type = "button"; b.className = "sobre";
   b.innerHTML = "<small>Ábreme cuando…</small>";
   b.append(s.abrir);
-  b.addEventListener("click", () => abrir({ titulo: `${APODO_ELLA}, cuando ${s.abrir}`, texto: s.texto, audio: s.audio }));
+  b.addEventListener("click", () => {
+    b.disabled = true;
+    b.classList.add("abriendo");
+    setTimeout(() => {
+      b.disabled = false;
+      b.classList.remove("abriendo");
+      abrir({ titulo: `${APODO_ELLA}, cuando ${s.abrir}`, texto: s.texto, audio: s.audio });
+    }, quieto ? 0 : 460);
+  });
   $("sobres-lista").appendChild(b);
 });
 
@@ -521,7 +586,7 @@ function pintar(t) {
   }
   if (!quieto) requestAnimationFrame(pintar);
 }
-medir(); addEventListener("resize", () => { medir(); if (quieto) pintar(0); });
+medir(); addEventListener("resize", () => { medir(); dibujarConstelacion(); if (quieto) pintar(0); });
 requestAnimationFrame(pintar);
 
 /* Inicialización de la experiencia */

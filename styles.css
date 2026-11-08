@@ -121,6 +121,29 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
 }
 .portada-texto { max-width: 44rem; }
 .sub { color: var(--suave); max-width: 28rem; margin: 1rem auto 0; }
+.portada-eleccion { margin-top: 1.5rem; color: var(--oro); font-style: italic; }
+.portada-opciones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .8rem;
+  width: min(100%, 38rem);
+  margin-top: .9rem;
+}
+.portada-opcion {
+  display: flex;
+  min-height: 6rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+  margin: 0;
+  padding: .7rem;
+  border-radius: .55rem;
+  background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035));
+  transition: background .3s, border-color .3s, transform .3s;
+}
+.portada-opcion span { color: var(--oro); font-size: 1.5rem; line-height: 1; }
+.portada-opcion:hover { transform: translateY(-2px); }
 
 .btn-romantico {
   margin-top: 1rem;
@@ -188,30 +211,28 @@ button {
 }
 button:hover { background: rgba(243,214,160,.16); border-color: var(--oro); }
 
-/* ============ SECCIÓN DE RESPIRACIÓN ============ */
-.aro { width: 11rem; height: 11rem; border-radius: 50%; margin: 2.5rem 0 1.5rem;
-       background: radial-gradient(circle, rgba(156,199,255,.55), rgba(156,199,255,.05) 70%);
-       box-shadow: 0 0 60px rgba(156,199,255,.35); animation: respirar 10s ease-in-out infinite; }
-@keyframes respirar { 0%,100% { transform: scale(.55); } 50% { transform: scale(1); } }
-#guia-respiro { font-style: italic; color: var(--oro); min-height: 2rem; }
-
 /* ============ LUCES INTERACTIVAS ============ */
 .cielo { position: relative; width: min(100%, 34rem); height: min(56svh, 26rem); margin-top: 1rem; }
+.constelacion { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
 .luz { position: absolute; width: 2.8rem; height: 2.8rem; margin: -1.4rem 0 0 -1.4rem; padding: 0;
-       border-radius: 50%; border: 0; background: radial-gradient(circle, #fff 0 12%, var(--oro) 30%, transparent 70%);
+  z-index: 1; border-radius: 50%; border: 0; background: radial-gradient(circle, #fff 0 12%, var(--oro) 30%, transparent 70%);
        animation: pulso 4s ease-in-out infinite; }
 .luz:hover { background: radial-gradient(circle, #fff 0 12%, var(--oro) 30%, transparent 70%); }
-.luz.leida { background: radial-gradient(circle, var(--azul) 0 10%, rgba(156,199,255,.25) 35%, transparent 70%); animation: none; opacity: .7; }
+.luz.leida { background: radial-gradient(circle, #fff 0 12%, var(--oro) 32%, rgba(243,214,160,.12) 65%, transparent 75%); animation: none; opacity: 1; }
+.luz.destello::after { content: ""; position: absolute; inset: 30%; border: 1px solid rgba(255,244,216,.9); border-radius: 50%; animation: eco-luz .8s ease-out both; }
+@keyframes eco-luz { from { transform: scale(.5); opacity: .9; } to { transform: scale(2.5); opacity: 0; } }
 @keyframes pulso { 0%,100% { transform: scale(.8); opacity: .75; } 50% { transform: scale(1.15); opacity: 1; } }
-#contador { font-style: italic; color: var(--suave); }
 
 /* ============ SOBRES ============ */
 .sobres { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: 1.1rem;
           width: min(100%, 36rem); margin-top: 1.5rem; }
 .sobre { position: relative; height: 7.5rem; margin: 0; padding: 2.9rem .8rem 0; border-radius: .6rem; border-color: rgba(243,214,160,.35);
+   perspective: 600px; transform-style: preserve-3d;
          background: linear-gradient(160deg, rgba(255,255,255,.1), rgba(255,255,255,.03)); font-size: 1.05rem; line-height: 1.25; }
 .sobre::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2.6rem; border-radius: .6rem .6rem 0 0;
-                 background: rgba(243,214,160,.14); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+     background: rgba(243,214,160,.14); clip-path: polygon(0 0, 100% 0, 50% 100%);
+     transform-origin: 50% 0; backface-visibility: hidden; transition: transform .46s ease, opacity .46s ease; }
+.sobre.abriendo::before { transform: rotateX(-155deg); opacity: .35; }
 .sobre small { display: block; color: var(--oro); font-style: italic; }
 
 /* ============ RECUERDOS ============ */
@@ -283,6 +304,13 @@ dialog button { margin-top: 1.2rem; }
                font: 500 .95rem var(--serif); padding: .6rem 1rem; text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
-  .aro, .luz, .escena.activa, dialog[open], .razon-revelada { animation: none; }
+  .luz, .luz.destello::after, .escena.activa, dialog[open], .razon-revelada { animation: none; }
+  .sobre::before { transition: none; }
   #corazon-animado { transition: none; }
+}
+
+@media (max-width: 600px) {
+  .portada-opciones { grid-template-columns: 1fr; width: min(100%, 22rem); }
+  .portada-opcion { min-height: 3.5rem; flex-direction: row; justify-content: flex-start; padding-inline: 1rem; }
+  .portada-opcion span { width: 1.5rem; }
 }
