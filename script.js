@@ -6,7 +6,8 @@
    ===================================================================== */
 
 const NOMBRE_ELLA = "Lizy";
-const FIRMA = "Te quiero";
+const APODO_ELLA = "Herz";
+const FIRMA = "Brian, tu Pozolito";
 
 // Archivo de audio opcional para GitHub Pages.
 // Debe usarse una ruta relativa para que funcione en una web pública y no en file://
@@ -29,7 +30,7 @@ const LUCES = [
   {
     x: 82, y: 38,
     titulo: "Lo que yo veo",
-    texto: "Hay algo de ti que admiro muchísimo y que quizá tú misma no alcanzas a ver: esa forma tan bonita que tienes de darlo todo por las personas que quieres, de intentar mantenerte en pie incluso cuando la vida te pesa y de seguir estando para los demás, incluso en esos días en los que tú también necesitarías que alguien estuviera ahí para ti.\nTienes una manera de querer que dice mucho de la persona que eres. Y ojalá nunca olvides que no tienes que poder con todo, que no siempre te toca ser la fuerte y que tú también mereces recibir todo ese cariño que tantas veces das sin pensártelo dos veces. Porque no tienes que demostrarle nada a nadie para merecer que te cuiden, te escuchen y te quieran bonito.\nY si alguna vez te cansas de ser fuerte, espero que recuerdes que no tienes que enfrentarte sola a los problemas, siempre me vas a tener a mi para ayudarte y recordarte lo mucho que vales, incluso cuando tú misma lo hayas olvidado."
+    texto: "Hay algo de ti que admiro muchísimo y que quizá tú misma no alcanzas a ver: esa forma tan bonita que tienes de darlo todo por las personas que quieres, de intentar mantenerte en pie incluso cuando la vida te pesa y de seguir estando para los demás, incluso en esos días en los que tú también necesitarías que alguien estuviera ahí para ti.\nTienes una manera de querer que dice mucho de la persona que eres. Y ojalá nunca olvides que no tienes que poder con todo, que no siempre te toca ser la fuerte y que tú también mereces recibir todo ese cariño que tantas veces das sin pensártelo dos veces. Porque no tienes que demostrarle nada a nadie para merecer que te cuiden, te escuchen y te quieran bonito.\nY si alguna vez te cansas de ser fuerte, espero que recuerdes que no tienes que enfrentarte sola a los problemas, siempre me vas a tener a mí para ayudarte y recordarte lo mucho que vales, incluso cuando tú misma lo hayas olvidado."
   },
   {
     x: 42, y: 42,
@@ -70,7 +71,7 @@ const SOBRES = [
   {
     abrir: "necesites reír",
     audio: "",
-    texto: "A ver, prohibido seguir con esa cara de amargada o seria un segundo más. ¿Te acuerdas de cuando nos reímos de nuestras propias tonterías o de las ocurrencias más absurdas? Ven acá, saca esa sonrisa que lo ilumina todo (sí, esa misma que sabes que me encanta). Si el día se pone tonto, le devolvemos la jugada con humor. Imagíname haciendo cualquier estupidez solo para arrancarte una carcajada. La vida ya es muy complicada como para tomársela en serio todo el tiempo. ¡Ríete, que te queda hermoso y se te quitan todos los males!"
+    texto: "¿Te acuerdas de cuando nos reímos de nuestras propias tonterías o de las ocurrencias más absurdas? Si hoy no te sale sonreír, no pasa nada; pero, cuando te apetezca, imagíname haciendo cualquier estupidez solo para arrancarte una carcajada. Si el día se pone tonto, podemos devolverle la jugada con humor. La vida ya es bastante complicada como para tomársela en serio todo el tiempo. Ojalá alguna de nuestras tonterías te regale un momento ligero; y si hoy no, lo guardamos para otro día."
   },
   {
     abrir: "te sientas sola",
@@ -106,12 +107,12 @@ const RAZONES = [
 
 /* Carta final: cada elemento del array se renderiza como un párrafo. */
 const CARTA = [
-  "Lizy,",
+  `${APODO_ELLA},`,
   "He pensado en ti hoy con calma, con cariño y con mucho respeto por todo lo que te está costando.\nNo quiero que esto se sienta como una obligación ni como una presión; quiero que te llegue como algo pequeño, honesto y pensado para ti.",
   "Tú eres una persona muy especial para mí. No solo por lo que podría llegar a pasar entre nosotros, sino por todo lo que ya significa haberte conocido, haberte querido como amiga y seguir queriendo conocerte de verdad.\nNuestra historia tiene algo muy real: confianza, complicidad, años compartidos y momentos que no son fáciles de olvidar.",
   "Me importa que hoy estés bien, pero también me importa que te permitas no estarlo.\nNo tienes que fingir, ni sonreír porque se espere de ti, ni explicar nada para que este regalo siga teniendo sentido.\nHe hecho esto para que te recuerde que eres valiosa, incluso en los días en los que tú no lo ves con claridad.",
   "No quiero que esto se convierta en una exigencia ni en una forma de pedirte que decidas algo a la fuerza.\nMe importas como persona, con toda tu intensidad, tus dudas, tus luces y tus momentos difíciles.\nRespetar tu ritmo es algo importante para mí, y te lo quiero demostrar con este pequeño gesto.",
-  "Ojalá este rincón de la web te haga respirar un poco más tranquilo.\nOjalá te recuerde que no estás sola en la forma en que alguien te mira y te valora, y que hay motivos para sonreír aunque hoy todo te cueste un poco más.\nNo tiene por qué ser un gran gesto ni una gran respuesta; basta con que te haga sentir un poco más acompañada.",
+  "Ojalá este rincón de la web te haga respirar un poco más tranquila.\nOjalá te recuerde que no estás sola en la forma en que alguien te mira y te valora, y que hay motivos para sonreír aunque hoy todo te cueste un poco más.\nNo tiene por qué ser un gran gesto ni una gran respuesta; basta con que te haga sentir un poco más acompañada.",
   "Gracias por ser quien eres, por compartir tanto tiempo conmigo y por dejarme formar parte de algo que tiene valor para mí.\nAunque todo esté todavía en construcción, quiero que sepas que he creado esto pensando en ti, no por una idea romántica cualquiera, sino porque te conozco y te quiero de verdad.\nY porque me importa que encuentres un poco de calma, de alegría y de cariño en medio de los días difíciles."
 ];
 
@@ -156,18 +157,22 @@ $("titulo-nombre").textContent = "Para " + NOMBRE_ELLA;
 const ORDEN = ["portada", "respira", "luces", "razones", "sobres", ...(RECUERDOS.length ? ["recuerdos"] : []), "carta"];
 const MENSAJE_ROMANTICO = [
   "Vales la pena.",
-  "Vales la Espera.",
-  "Vales a Distancia.",
-  "Vales El tiempo.",
+  "Vales la espera.",
+  "Vales incluso a la distancia.",
+  "Vales el tiempo.",
   "Vales mi amor eterno.",
-  "Te amo"
+  `Te amo, ${APODO_ELLA}.`
 ].join("\n");
 let temporizador;
 
 const btnMensajeRomantico = $("btn-mensaje-romantico");
 if (btnMensajeRomantico) {
   btnMensajeRomantico.addEventListener("click", () => {
-    mostrarTextoAnimado("Para ti", MENSAJE_ROMANTICO.split("\n"));
+    btnMensajeRomantico.disabled = true;
+    formarCorazon(() => {
+      btnMensajeRomantico.disabled = false;
+      mostrarTextoAnimado(`Para ti, ${APODO_ELLA}`, MENSAJE_ROMANTICO.split("\n"));
+    });
   });
 }
 
@@ -185,7 +190,11 @@ document.querySelectorAll("[data-ir]").forEach(b => b.addEventListener("click", 
 
 let indiceRazon = 0;
 $("btn-razon").addEventListener("click", () => {
-  $("razon-tarjeta").hidden = false;
+  const tarjeta = $("razon-tarjeta");
+  tarjeta.hidden = false;
+  tarjeta.classList.remove("razon-revelada");
+  void tarjeta.offsetWidth;
+  tarjeta.classList.add("razon-revelada");
   $("razon-texto").textContent = RAZONES[indiceRazon];
   indiceRazon++;
   $("razon-contador").textContent = `${indiceRazon} de ${RAZONES.length}`;
@@ -300,7 +309,7 @@ LUCES.forEach((l, i) => {
   b.setAttribute("aria-label", "Luz " + (i + 1));
   b.addEventListener("click", () => {
     if (!b.classList.contains("leida")) { b.classList.add("leida"); leidas++; actualizarContador(); }
-    abrir({ titulo: l.titulo, texto: l.texto });
+    abrir({ titulo: `${APODO_ELLA}, ${l.titulo.toLocaleLowerCase("es")}`, texto: l.texto });
   });
   $("cielo").appendChild(b);
 });
@@ -311,7 +320,7 @@ SOBRES.forEach(s => {
   b.type = "button"; b.className = "sobre";
   b.innerHTML = "<small>Ábreme cuando…</small>";
   b.append(s.abrir);
-  b.addEventListener("click", () => abrir({ titulo: "Cuando " + s.abrir, texto: s.texto, audio: s.audio }));
+  b.addEventListener("click", () => abrir({ titulo: `${APODO_ELLA}, cuando ${s.abrir}`, texto: s.texto, audio: s.audio }));
   $("sobres-lista").appendChild(b);
 });
 
@@ -421,15 +430,78 @@ if (["", "localhost", "127.0.0.1"].includes(location.hostname)) {
 
 /* Fondo animado con estrellas */
 const lienzo = $("estrellas"), c = lienzo.getContext("2d");
+const lienzoCorazon = $("corazon-animado"), contextoCorazon = lienzoCorazon.getContext("2d");
 let estrellas = [], fugaz = null, proximaFugaz = performance.now() + 9000;
 function medir() {
   const d = window.devicePixelRatio || 1;
   lienzo.width = innerWidth * d; lienzo.height = innerHeight * d;
   c.setTransform(d, 0, 0, d, 0, 0);
+  lienzoCorazon.width = innerWidth * d; lienzoCorazon.height = innerHeight * d;
+  contextoCorazon.setTransform(d, 0, 0, d, 0, 0);
   estrellas = Array.from({ length: Math.round(innerWidth * innerHeight / 7000) }, () => ({
     x: Math.random() * innerWidth, y: Math.random() * innerHeight * 0.85,
     r: Math.random() * 1.2 + .3, f: Math.random() * 6
   }));
+}
+function formarCorazon(alTerminar) {
+  if (quieto || !contextoCorazon) {
+    alTerminar();
+    return;
+  }
+
+  const cantidad = 72;
+  const puntos = Array.from({ length: cantidad }, (_, i) => {
+    const angulo = i / cantidad * Math.PI * 2;
+    return {
+      x: 16 * Math.sin(angulo) ** 3,
+      y: 13 * Math.cos(angulo) - 5 * Math.cos(2 * angulo) - 2 * Math.cos(3 * angulo) - Math.cos(4 * angulo),
+      origenX: (Math.random() - .5) * innerWidth * .8,
+      origenY: (Math.random() - .5) * innerHeight * .8,
+      radio: 1.5 + Math.random() * 1.5
+    };
+  });
+  const inicio = performance.now();
+  const duracionFormacion = 1800;
+  lienzoCorazon.classList.add("visible");
+
+  function animarCorazon(tiempo) {
+    const transcurrido = tiempo - inicio;
+    const progreso = Math.min(1, transcurrido / duracionFormacion);
+    const desvanecer = transcurrido <= 2200 ? 1 : Math.max(0, 1 - (transcurrido - 2200) / 450);
+    const escala = Math.min(6.5, innerWidth / 48);
+    const centroX = innerWidth / 2;
+    const centroY = innerHeight / 2;
+
+    contextoCorazon.clearRect(0, 0, innerWidth, innerHeight);
+    contextoCorazon.fillStyle = "#ffd3e8";
+    contextoCorazon.shadowColor = "rgba(255, 116, 179, .95)";
+    contextoCorazon.shadowBlur = 14;
+
+    puntos.forEach((punto, i) => {
+      const espera = i / cantidad * .58;
+      const avance = Math.max(0, Math.min(1, (progreso - espera) / (1 - espera)));
+      if (!avance) return;
+      const suavizado = 1 - (1 - avance) ** 3;
+      const x = centroX + (punto.origenX + punto.x * escala - punto.origenX) * suavizado;
+      const y = centroY + (punto.origenY - punto.y * escala - punto.origenY) * suavizado;
+      contextoCorazon.globalAlpha = Math.min(1, avance * 1.8) * desvanecer;
+      contextoCorazon.beginPath();
+      contextoCorazon.arc(x, y, punto.radio, 0, Math.PI * 2);
+      contextoCorazon.fill();
+    });
+    contextoCorazon.globalAlpha = 1;
+    contextoCorazon.shadowBlur = 0;
+
+    if (transcurrido < 2650) {
+      requestAnimationFrame(animarCorazon);
+    } else {
+      contextoCorazon.clearRect(0, 0, innerWidth, innerHeight);
+      lienzoCorazon.classList.remove("visible");
+      alTerminar();
+    }
+  }
+
+  requestAnimationFrame(animarCorazon);
 }
 function pintar(t) {
   c.clearRect(0, 0, innerWidth, innerHeight);

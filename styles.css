@@ -96,6 +96,12 @@ body::after {
   opacity: 0.9;
 }
 #estrellas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
+#corazon-animado {
+  position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%;
+  opacity: 0; pointer-events: none; transition: opacity .35s ease;
+}
+#corazon-animado.visible { opacity: 1; }
+main { position: relative; z-index: 1; }
 :focus-visible { outline: 2px solid var(--oro); outline-offset: 4px; }
 
 /* ============ ESCENAS ============ */
@@ -143,6 +149,12 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
 }
 .razon-tarjeta[hidden] { display: none; }
 .razon-tarjeta p { font-size: 2rem; line-height: 1.25; }
+@keyframes revelar-razon {
+  0% { opacity: .55; transform: scale(.96); box-shadow: 0 0 0 rgba(255, 174, 214, 0); }
+  45% { opacity: 1; transform: scale(1.015); box-shadow: 0 0 34px rgba(255, 174, 214, .3); }
+  100% { opacity: 1; transform: scale(1); box-shadow: 0 16px 48px rgba(0, 0, 0, .2); }
+}
+.razon-revelada { animation: revelar-razon .85s ease both; }
 #razon-contador { min-height: 1.6em; margin-top: .75rem; color: var(--oro); font-style: italic; }
 .razon-final { max-width: 32rem; margin-top: 1rem; color: var(--suave); }
 .razon-final[hidden] { display: none; }
@@ -271,5 +283,6 @@ dialog button { margin-top: 1.2rem; }
                font: 500 .95rem var(--serif); padding: .6rem 1rem; text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
-  .aro, .luz, .escena.activa, dialog[open] { animation: none; }
+  .aro, .luz, .escena.activa, dialog[open], .razon-revelada { animation: none; }
+  #corazon-animado { transition: none; }
 }

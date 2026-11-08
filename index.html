@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Un lugar donde el mundo se detiene. Una carta íntima, un respiro y un cielo de luces para recordar lo que importa.">
+<meta name="description" content="Un lugar donde el mundo se detiene. Una carta íntima para Herz, un respiro y un cielo de luces para recordar lo que importa.">
 <meta name="theme-color" content="#0f172a">
 <meta property="og:title" content="Para Lizy">
-<meta property="og:description" content="Un lugar donde el mundo se detiene. Solo tú y yo en estas palabras.">
+<meta property="og:description" content="Un lugar donde el mundo se detiene. Solo tú, Herz, y yo en estas palabras.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="favicon.svg">
 <meta property="og:image:alt" content="Logo de Para Lizy">
@@ -25,6 +25,7 @@
 <div class="cursor-ring" aria-hidden="true"></div>
 <div class="cursor-dot" aria-hidden="true"></div>
 <canvas id="estrellas" aria-hidden="true"></canvas>
+<canvas id="corazon-animado" aria-hidden="true"></canvas>
 
 <!--  Se muestra solo si existe el archivo de música (ver MUSICA_ARCHIVO en el JS) -->
 <audio id="fondo-musica" loop preload="auto"></audio>
@@ -45,12 +46,12 @@
       <div class="portada-texto">
         <h1 id="titulo-nombre"></h1>
         <p class="sub">"Un lugar donde el mundo se detiene.
-<br>Sin expectativas, sin ruido, sin respuestas que dar. Solo tú y yo en estas palabras."</p>
+<br>Sin expectativas, sin ruido, sin respuestas que dar. Solo tú y yo, Herz, en estas palabras."</p>
       </div>
       <span class="corazon-portada corazon-der" aria-hidden="true">♥</span>
     </div>
     <button type="button" data-ir="respira">Entrar</button>
-    <button type="button" class="btn-romantico" id="btn-mensaje-romantico">Cuando quieras saber lo que vales</button>
+    <button type="button" class="btn-romantico" id="btn-mensaje-romantico">Cuando quieras recordar lo que vales, Herz</button>
   </section>
 
   <!-- ============ 2. RESPIRO ============ -->
@@ -58,13 +59,13 @@
     <h2>Antes de nada, un respiro</h2>
     <div class="aro" aria-hidden="true"></div>
     <p id="guia-respiro" aria-live="polite">Inspira…</p>
-    <p class="sub">El tiempo que quieras. Aquí no corre prisa Herz.</p>
+    <p class="sub">El tiempo que quieras. Aquí no corre prisa, Herz.</p>
     <button type="button" data-ir="luces">Seguir</button>
   </section>
 
   <!-- ============ 3. LUCES ============ -->
   <section class="escena" id="luces">
-    <h2>Pequeñas luces</h2>
+    <h2>Pequeñas luces para Herz</h2>
     <p class="sub">Toca las que quieras, en el orden que quieras. Ninguna caduca.</p>
     <div class="cielo" id="cielo"></div>
     <p id="contador"></p>
@@ -73,20 +74,20 @@
 
   <!-- ============ 4. RAZONES ============ -->
   <section class="escena" id="razones">
-    <h2>Algunas cosas que me encantan de ti</h2>
+    <h2>Herz, algunas cosas que me encantan de ti</h2>
     <p class="sub">No tienes que leerlas todas de una vez.<br>Solo quería dejarte aquí algunas de las cosas que me gustan de ti.</p>
     <article class="razon-tarjeta" id="razon-tarjeta" aria-live="polite" aria-atomic="true" hidden>
       <p id="razon-texto"></p>
     </article>
     <p id="razon-contador" aria-live="polite"></p>
-    <p class="razon-final" id="razon-final" hidden>No las puse para que tengas que responder nada. Solo quería que supieras cuánto me gusta la persona que eres.</p>
+    <p class="razon-final" id="razon-final" hidden>Herz, no las puse para que tengas que responder nada. Solo quería que supieras cuánto me gusta la persona que eres.</p>
     <button type="button" id="btn-razon">Descubrir una razón</button>
     <button type="button" data-ir="sobres">Seguir</button>
   </section>
 
   <!-- ============ 5. SOBRES ============ -->
   <section class="escena" id="sobres">
-    <h2>Para cuando haga falta</h2>
+    <h2>Para Herz, cuando haga falta</h2>
     <p class="sub">Cartas para días concretos. Ábrelas solo cuando te sirvan.</p>
     <div class="sobres" id="sobres-lista"></div>
     <button type="button" data-ir="siguiente-sobres">Seguir</button>
@@ -94,7 +95,7 @@
 
   <!-- ============ 5. RECUERDOS (solo aparece si rellenas RECUERDOS en el JS) ============ -->
   <section class="escena" id="recuerdos">
-    <h2>Lo que hemos vivido</h2>
+    <h2>Lo que hemos vivido, Herz</h2>
     <ol class="recuerdos" id="recuerdos-lista"></ol>
     <button type="button" data-ir="carta">Seguir</button>
   </section>
