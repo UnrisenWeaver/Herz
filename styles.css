@@ -129,6 +129,24 @@ h2 { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: .75rem; }
   border-color: rgba(243, 214, 160, 0.9);
 }
 
+.razon-tarjeta {
+  display: grid;
+  place-items: center;
+  width: min(100%, 36rem);
+  min-height: 10rem;
+  margin-top: 1.5rem;
+  padding: 2rem;
+  border: 1px solid rgba(243, 214, 160, .35);
+  border-radius: 6px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .03));
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .2);
+}
+.razon-tarjeta[hidden] { display: none; }
+.razon-tarjeta p { font-size: 2rem; line-height: 1.25; }
+#razon-contador { min-height: 1.6em; margin-top: .75rem; color: var(--oro); font-style: italic; }
+.razon-final { max-width: 32rem; margin-top: 1rem; color: var(--suave); }
+.razon-final[hidden] { display: none; }
+
 .corazon-portada {
   font-size: clamp(4.5rem, 8vw, 10rem);
   line-height: 1;

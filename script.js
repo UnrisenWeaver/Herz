@@ -83,6 +83,109 @@ const SOBRES = [
    recorrido. Si se utilizan datos reales, respetar el formato indicado. */
 const RECUERDOS = [];
 
+const RAZONES = [
+  "Tu pelo.",
+  "Tus ojos.",
+  "Tu sonrisa.",
+  "Tu risa contagiosa.",
+  "Tu voz.",
+  "La forma en que me miras.",
+  "Tus abrazos.",
+  "Tus besos.",
+  "Tus cachetitos.",
+  "Tus manos.",
+  "Tus expresiones cuando algo te sorprende.",
+  "Tu forma de arreglarte.",
+  "Lo bonita que te ves cuando simplemente eres tú.",
+  "Tu estilo.",
+  "La emoción que pones al contarme algo que te gusta.",
+  "Tu carita cuando te concentras.",
+  "Cómo cambia tu voz cuando estás emocionada.",
+  "El brillo de tus ojos cuando algo te hace feliz.",
+  "Tu inteligencia.",
+  "Tu sentido del humor.",
+  "Tu amabilidad.",
+  "Tu honestidad.",
+  "Tu lealtad.",
+  "Tu sensibilidad.",
+  "Tu manera de pensar.",
+  "Tu curiosidad.",
+  "Tu creatividad.",
+  "Tu carácter.",
+  "Tu humildad.",
+  "Tu valentía.",
+  "Tu paciencia.",
+  "Tu determinación.",
+  "Tu ternura.",
+  "Tu autenticidad.",
+  "Tu forma de escuchar.",
+  "La manera en que cuidas a las personas que quieres.",
+  "Tu generosidad.",
+  "Tu independencia.",
+  "La fuerza que tienes, incluso en los días difíciles.",
+  "Que también te permitas mostrar tu lado sensible.",
+  "La forma en que ayudas a los demás.",
+  "Tu amor por los animales.",
+  "La pasión que pones en las cosas que te importan.",
+  "Tus talentos, incluso los que tú no ves.",
+  "Los consejos que me das.",
+  "La confianza que me tienes.",
+  "Tus ocurrencias.",
+  "Que puedas reírte de tus propias tonterías.",
+  "Tu forma tan tuya de decir las cosas.",
+  "Que contigo puedo ser yo.",
+  "Que me escuches de verdad.",
+  "Cómo haces espacio para lo que siento.",
+  "La forma en que me apoyas cuando lo necesito.",
+  "Cómo sabes animarme.",
+  "Que me recuerdes lo que valgo cuando se me olvida.",
+  "Nuestra complicidad.",
+  "Todos los años de amistad que compartimos.",
+  "Que después de tantos años sigamos compartiendo tantos momentos.",
+  "Las charlas de madrugada.",
+  "Hablar contigo de todo y de nada.",
+  "Las bromas que solo nosotros entendemos.",
+  "Los recuerdos que hemos ido juntando.",
+  "Que podamos retomar una conversación como si no hubiera pasado el tiempo.",
+  "Que nunca nos falten temas.",
+  "La forma en que te acuerdas de los pequeños detalles.",
+  "Cómo me haces sentir escuchado.",
+  "Que me hagas reír incluso cuando no era mi plan.",
+  "La calma que siento cuando hablamos.",
+  "Que me inspires a ser mejor.",
+  "La ilusión con la que celebras las cosas que te gustan.",
+  "La forma en que cuidas a quienes tienes cerca.",
+  "Que respetes mis tiempos.",
+  "Que conmigo puedas ser sincera.",
+  "Todo lo que sabes de mí.",
+  "La manera en que has estado presente en mi vida.",
+  "Lo especial que se siente nuestra conexión.",
+  "Que me hagas sentir afortunado de conocerte.",
+  "Que incluso a la distancia sepas hacerte sentir cerquita.",
+  "Cómo se nos pasa el tiempo cuando hablamos.",
+  "Que a veces basta con un mensaje tuyo para alegrarme el día.",
+  "Cuando me cuentas cómo te fue.",
+  "Cuando me mandas una canción que te gusta.",
+  "Cuando compartes conmigo algo que te hizo reír.",
+  "Tus mensajes espontáneos.",
+  "La forma en que preguntas si estoy bien.",
+  "Que me hagas parte de tus días.",
+  "Cómo me cuentas tus sueños y tus planes.",
+  "La ilusión que pones en lo que quieres lograr.",
+  "Que sigas intentando incluso cuando algo cuesta.",
+  "Lo mucho que has crecido y todo lo que has superado.",
+  "Que tengas tus propias opiniones y las defiendas.",
+  "Tu manera de ver el mundo.",
+  "Tu forma de querer.",
+  "El cariño que das a las personas importantes para ti.",
+  "La confianza que transmites cuando hablas de algo que conoces.",
+  "Cómo haces especiales los momentos sencillos.",
+  "Que contigo hasta una conversación cualquiera se vuelve un recuerdo.",
+  "La persona que eres cuando nadie te está mirando.",
+  "Todo lo que todavía me queda por descubrir de ti.",
+  "Y, sobre todo, que seas tú."
+];
+
 /* Carta final: cada elemento del array se renderiza como un párrafo. */
 const CARTA = [
   "Lizy,",
@@ -132,7 +235,7 @@ document.addEventListener("pointerup", () => {
 $("titulo-nombre").textContent = "Para " + NOMBRE_ELLA;
 
 /* Gestión de escenas y navegación */
-const ORDEN = ["portada", "respira", "luces", "sobres", ...(RECUERDOS.length ? ["recuerdos"] : []), "carta"];
+const ORDEN = ["portada", "respira", "luces", "razones", "sobres", ...(RECUERDOS.length ? ["recuerdos"] : []), "carta"];
 const MENSAJE_ROMANTICO = [
   "Vales la pena.",
   "Vales la Espera.",
@@ -161,6 +264,21 @@ function ir(id) {
   if (id === "respira") guiarRespiro();
 }
 document.querySelectorAll("[data-ir]").forEach(b => b.addEventListener("click", () => ir(b.dataset.ir)));
+
+let indiceRazon = 0;
+$("btn-razon").addEventListener("click", () => {
+  $("razon-tarjeta").hidden = false;
+  $("razon-texto").textContent = RAZONES[indiceRazon];
+  indiceRazon++;
+  $("razon-contador").textContent = `${indiceRazon} de ${RAZONES.length}`;
+
+  if (indiceRazon === RAZONES.length) {
+    $("razon-final").hidden = false;
+    $("btn-razon").hidden = true;
+  } else {
+    $("btn-razon").textContent = "Descubrir otra razón";
+  }
+});
 
 for (let i = 1; i < ORDEN.length; i++) {
   const escena = document.getElementById(ORDEN[i]);
