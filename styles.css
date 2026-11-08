@@ -232,8 +232,8 @@ dialog { width: min(92vw, 30rem); margin: auto; padding: 2rem 1.6rem 1.6rem; col
 dialog::backdrop { background: rgba(5,8,28,.6); backdrop-filter: blur(5px); }
 dialog[open] { animation: entrar .6s ease both; }
 dialog h3 { font: italic 400 1.8rem/1.15 var(--serif); color: var(--oro); margin-bottom: .8rem; }
-dialog p { white-space: pre-wrap; opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
-dialog p.visible { opacity: 1; transform: translateY(0); }
+dialog p { white-space: pre-wrap; opacity: 1; transform: translateY(0); transition: opacity .45s ease, transform .45s ease; }
+dialog p.texto-oculto { opacity: 0; transform: translateY(8px); }
 dialog audio { width: 100%; margin-top: 1rem; }
 dialog button { margin-top: 1.2rem; }
 

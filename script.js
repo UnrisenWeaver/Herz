@@ -238,7 +238,7 @@ function limpiarAnimacionTexto() {
   }
   const textoEl = $("v-texto");
   if (textoEl) {
-    textoEl.classList.remove("visible");
+    textoEl.classList.remove("texto-oculto");
     textoEl.style.opacity = "";
   }
 }
@@ -253,7 +253,7 @@ function mostrarTextoAnimado(titulo, frases) {
   $("v-titulo").textContent = titulo;
   const textoEl = $("v-texto");
   textoEl.textContent = "";
-  textoEl.classList.remove("visible");
+  textoEl.classList.add("texto-oculto");
   const a = $("v-audio");
   a.pause(); a.hidden = true; a.removeAttribute("src");
   ventana.showModal();
@@ -262,18 +262,18 @@ function mostrarTextoAnimado(titulo, frases) {
   function mostrarSiguiente() {
     if (indice >= frases.length) {
       textoEl.textContent = frases[frases.length - 1];
-      textoEl.classList.add("visible");
+      textoEl.classList.remove("texto-oculto");
       return;
     }
 
     const frase = frases[indice];
     textoEl.textContent = frase;
-    textoEl.classList.remove("visible");
+    textoEl.classList.add("texto-oculto");
     void textoEl.offsetWidth;
-    textoEl.classList.add("visible");
+    textoEl.classList.remove("texto-oculto");
 
     timeoutAnimacionMensaje = setTimeout(() => {
-      textoEl.classList.remove("visible");
+      textoEl.classList.add("texto-oculto");
       timeoutAnimacionMensaje = setTimeout(() => {
         indice += 1;
         mostrarSiguiente();
@@ -289,13 +289,11 @@ function abrir({ titulo, texto, audio }) {
   $("v-titulo").textContent = titulo;
   const textoEl = $("v-texto");
   textoEl.textContent = texto;
-  textoEl.classList.remove("visible");
+  textoEl.classList.remove("texto-oculto");
   const a = $("v-audio");
   a.pause(); a.hidden = !audio;
   if (audio) a.src = audio;
   ventana.showModal();
-  void textoEl.offsetWidth;
-  textoEl.classList.add("visible");
 }
 $("v-cerrar").addEventListener("click", cerrarVentana);
 ventana.addEventListener("click", (e) => { if (e.target === ventana) cerrarVentana(); });  // Cierra el modal al hacer clic fuera del diálogo.
