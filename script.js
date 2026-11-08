@@ -287,11 +287,15 @@ function mostrarTextoAnimado(titulo, frases) {
 function abrir({ titulo, texto, audio }) {
   limpiarAnimacionTexto();
   $("v-titulo").textContent = titulo;
-  $("v-texto").textContent = texto;
+  const textoEl = $("v-texto");
+  textoEl.textContent = texto;
+  textoEl.classList.remove("visible");
   const a = $("v-audio");
   a.pause(); a.hidden = !audio;
   if (audio) a.src = audio;
   ventana.showModal();
+  void textoEl.offsetWidth;
+  textoEl.classList.add("visible");
 }
 $("v-cerrar").addEventListener("click", cerrarVentana);
 ventana.addEventListener("click", (e) => { if (e.target === ventana) cerrarVentana(); });  // Cierra el modal al hacer clic fuera del diálogo.
